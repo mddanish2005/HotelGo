@@ -10,18 +10,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 /**
  *
  * @author danish
  */
-public class RoomPanel extends JFrame implements ActionListener {
+public class AddRoomPanel extends JFrame implements ActionListener {
 
     JTextField roomNof, pricef;
     JComboBox cbAvail, cbCleanStatus, cbBedType;
-    JButton submit;
+    JButton submit, back;
 
-    RoomPanel() {
+    AddRoomPanel() {
 
         setLayout(null);
         setBounds(500, 250, 900, 650);
@@ -80,6 +81,13 @@ public class RoomPanel extends JFrame implements ActionListener {
         submit.setFont(new Font("serif", Font.BOLD, 18));
         add(submit);
         submit.addActionListener(this);
+        back = new JButton("Back");
+        back.setBounds(550, 500, 120, 50);
+        back.setBackground(Color.black);
+        back.setForeground(Color.white);
+        back.setFont(new Font("serif", Font.BOLD, 18));
+        add(back);
+        back.addActionListener(this);
 
         //image
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/eight.jpg"));
@@ -93,31 +101,37 @@ public class RoomPanel extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new RoomPanel();
+        new AddRoomPanel();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submit) {
+            RoomController roomController = new RoomController();
 
-        RoomController roomController = new RoomController();
-
-        Room room = new Room(
-                roomNof.getText(),
-                (String) cbAvail.getSelectedItem(),
-                (String) cbCleanStatus.getSelectedItem(),
-                Float.valueOf(pricef.getText()),
-                (String) cbBedType.getSelectedItem()
-        );
-        if (roomController.addRoom(room)) {
-            JOptionPane.showMessageDialog(
-                    null, "Room Added Successfully"
+            Room room = new Room(
+                    roomNof.getText(),
+                    (String) cbAvail.getSelectedItem(),
+                    (String) cbCleanStatus.getSelectedItem(),
+                    BigDecimal.valueOf(Double.parseDouble(pricef.getText())),
+                    (String) cbBedType.getSelectedItem()
             );
+            if (roomController.addRoom(room)) {
+                 dispose();
+                JOptionPane.showMessageDialog(
+                        null, "Room Added Successfully"
+                );
+               
+            } else {
+                JOptionPane.showMessageDialog(
+                        null, "Invalid Details - Try again"
+                );
+
+            }
+        }
+
+        if (e.getSource() == back) {
             dispose();
-        } else {
-            JOptionPane.showMessageDialog(
-                    null, "Invalid Details"
-            );
-
         }
     }
 }

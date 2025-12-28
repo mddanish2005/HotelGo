@@ -1,38 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package hotel.management.system.model;
 
-/**
- *
- * @author danish
- */
+import java.math.BigDecimal;
 
 public class Room {
-    
-    String roomNo;
-    String avail;
-    String cleanStatus;
-    Float price;
-    String bedType;
-    
-    public Room(String roomNo,
-    String avail,
-    String cleanStatus,
-    Float price,
-    String bedType)
-    {
-       
+
+    private String roomNo; //Primary Key
+    private String availability;
+    private String cleanStatus;
+    private BigDecimal price;
+    private String bedType;
+
+  
+    public Room(String roomNo, String availability, String cleanStatus,
+                BigDecimal price, String bedType) {
         this.roomNo = roomNo;
-        this.avail = avail;
+        this.availability = availability;
         this.cleanStatus = cleanStatus;
         this.price = price;
         this.bedType = bedType;
-    
     }
-    
-      public String getRoomNo() {
+
+    // Getters & Setters
+    public String getRoomNo() {
         return roomNo;
     }
 
@@ -40,16 +29,14 @@ public class Room {
         this.roomNo = roomNo;
     }
 
-    // Getter & Setter for avail
-    public String getAvail() {
-        return avail;
+    public String getAvailability() {
+        return availability;
     }
 
-    public void setAvail(String avail) {
-        this.avail = avail;
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
-    // Getter & Setter for cleanStatus
     public String getCleanStatus() {
         return cleanStatus;
     }
@@ -58,16 +45,14 @@ public class Room {
         this.cleanStatus = cleanStatus;
     }
 
-    // Getter & Setter for price
-    public Float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    // Getter & Setter for bedType
     public String getBedType() {
         return bedType;
     }
@@ -75,7 +60,4 @@ public class Room {
     public void setBedType(String bedType) {
         this.bedType = bedType;
     }
-    
-    
-    
 }

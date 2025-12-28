@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public class DriverController {
 
-    DriverDAO driverdao = new DriverDAO();
+    DriverDAO driverDao = new DriverDAO();
 
     public boolean addDriver(Driver dv) {
 
         try {
-            return driverdao.addDriver(dv);
+            return driverDao.addDriver(dv);
         } catch (SQLException ex) {
             System.getLogger(EmployeeController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }

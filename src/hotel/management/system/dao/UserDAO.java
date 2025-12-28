@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hotel.management.system.dao;
 
+import hotel.management.system.util.Conn;
 import hotel.management.system.model.User;
 import java.sql.*;
 
@@ -27,6 +25,7 @@ public class UserDAO {
         
         if (rs.next()) {
             return new User(
+                    rs.getInt("user_id"),
                     rs.getString("username"),
                     rs.getString("password")                         
             );

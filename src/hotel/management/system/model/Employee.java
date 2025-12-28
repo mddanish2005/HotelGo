@@ -1,85 +1,102 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package hotel.management.system.model;
 
-/**
- *
- * @author danish
- */
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 public class Employee {
 
-    String name;
-    int age;
-    double salary;
-    String phone;
-    String gender;
-    String job;
+    private int empId;
+    private String name;
+    private Integer age;          // nullable
+    private BigDecimal salary;
+    private String phone;
+    private String gender;        // Male / Female / Other
+    private String job;
+    private LocalDateTime createdAt;
 
-    public Employee(String name,
-            int age,
-            double salary,
-            String phone,
-            String gender,
-            String job
-    ) {
+ 
+    public Employee(String name, Integer age, BigDecimal salary,
+                    String phone, String gender, String job) {
+       
         this.name = name;
         this.age = age;
         this.salary = salary;
         this.phone = phone;
         this.gender = gender;
         this.job = job;
+    }
+
+    public Employee(int empId, String name, Integer age, BigDecimal salary,
+                String phone, String gender, String job,
+                LocalDateTime createdAt) {
+    this.empId = empId;
+    this.name = name;
+    this.age = age;
+    this.salary = salary;
+    this.phone = phone;
+    this.gender = gender;
+    this.job = job;
+    this.createdAt = createdAt;
+}
+
+    
+    
+    // ✅ Getters & Setters
+    public int getEmpId() {
+        return empId;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
         return age;
     }
 
-    public String getGender() {
-        return gender;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public String getJob() {
-        return job;
-    }
-
-    public double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    // Setters
-    public void setName(String name) {
-        this.name = name;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public String getGender() {
+        return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
+    public String getJob() {
+        return job;
+    }
+
     public void setJob(String job) {
         this.job = job;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  
 }
-
-

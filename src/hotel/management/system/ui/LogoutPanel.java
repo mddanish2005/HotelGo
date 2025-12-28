@@ -1,6 +1,6 @@
 package hotel.management.system.ui;
 
-import hotel.management.system.controller.LoginController;
+import hotel.management.system.controller.UserController;
 import hotel.management.system.model.User;
 import javax.swing.*;
 import java.awt.*;
@@ -66,7 +66,7 @@ public class LogoutPanel extends JFrame implements ActionListener {
 
         if (e.getSource() == Login) {
             
-            LoginController loginController = new LoginController();
+            UserController loginController = new UserController();
            
             
             

@@ -37,9 +37,9 @@ import javax.swing.JTextField;
  *
  * @author danish
  */
-public class NewCustomerPanel extends JFrame implements ActionListener {
+public class AddNewCustomerPanel extends JFrame implements ActionListener {
 
-    JButton submit;
+    JButton submit, back;
 
     JLabel id, number, name, gender, country, allocateRoomNo, checkinTime, deposit, showCheckInTime;
 
@@ -56,7 +56,7 @@ public class NewCustomerPanel extends JFrame implements ActionListener {
 
     List<Room> rooms;
 
-    public NewCustomerPanel() {
+    public AddNewCustomerPanel() {
         setLayout(null);
         setBounds(500, 250, 900, 650);
         getContentPane().setBackground(Color.white);
@@ -69,6 +69,13 @@ public class NewCustomerPanel extends JFrame implements ActionListener {
         submit.setFont(new Font("serif", Font.BOLD, 18));
         add(submit);
         submit.addActionListener(this);
+        back = new JButton("Back");
+        back.setBounds(550, 500, 120, 50);
+        back.setBackground(Color.black);
+        back.setForeground(Color.white);
+        back.setFont(new Font("serif", Font.BOLD, 18));
+        add(back);
+        back.addActionListener(this);
 
         //Labels
         name = new JLabel("Name");
@@ -170,13 +177,14 @@ public class NewCustomerPanel extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new NewCustomerPanel();
+        new AddNewCustomerPanel();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submit) {
+
             if (customerController.addCustomer(new Customer(
                     (String) idComboBox.getSelectedItem(),
                     numberField.getText(),
@@ -184,17 +192,25 @@ public class NewCustomerPanel extends JFrame implements ActionListener {
                     male.isSelected() ? "Male" : "Female",
                     countryField.getText(),
                     (String) allocateRoomNoComboBox.getSelectedItem(),
-                    LocalDateTime.now(),
                     new BigDecimal(depositField.getText())
             ))) {
-
+                dispose();
                 JOptionPane.showMessageDialog(
                         null, "Customer Added Successfully"
                 );
-                setVisible(false);
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        null, "Invalid details - try again"
+                );
 
             }
 
+        }
+
+        if (e.getSource() == back) {
+            dispose();
         }
 
     }

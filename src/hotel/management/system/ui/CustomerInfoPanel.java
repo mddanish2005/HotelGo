@@ -58,23 +58,25 @@ public class CustomerInfoPanel extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    private void showDetails(List<Customer> customers) {
+ private void showDetails(List<Customer> customers) {
 
-        model.setRowCount(0); // clear previous data
+    model.setRowCount(0); 
 
-        for (Customer c : customers) {
-            model.addRow(new Object[]{
-                    c.getId(),
-                    c.getIdNumber(),
-                    c.getName(),
-                    c.getGender(),
-                    c.getCountry(),
-                    c.getRoomNo(),
-                    c.getCheckInTime(),
-                    c.getDeposit()
-            });
-        }
+    for (Customer c : customers) {
+        model.addRow(new Object[]{
+                c.getCustomerId(),
+                c.getIdType(),
+                c.getIdNumber(),
+                c.getName(),
+                c.getGender(),
+                c.getCountry(),
+                c.getRoomNo(),
+                c.getCheckInTime(),
+                c.getDeposit()
+        });
     }
+}
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -87,7 +89,5 @@ public class CustomerInfoPanel extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        new CustomerInfoPanel();
-    }
+   
 }

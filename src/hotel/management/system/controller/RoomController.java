@@ -1,4 +1,3 @@
-
 package hotel.management.system.controller;
 
 import hotel.management.system.dao.RoomDAO;
@@ -7,60 +6,47 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author danish
- */
 public class RoomController {
-    
-    RoomDAO roomdao = new RoomDAO();
-    
-    public boolean addRoom(Room rm)
-    {
-        
+
+    RoomDAO roomDao = new RoomDAO();
+
+    public boolean addRoom(Room rm) {
+
         try {
-          return  roomdao.addRoom(rm);
+            return roomDao.addRoom(rm);
         } catch (SQLException ex) {
             System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         return false;
     }
-    
-    public List<Room> getAvailableRooms()
-    {
+
+    public List<Room> getAvailableRooms() {
         try {
-            return roomdao.getAvailableRooms();
-           
-              
-            
-            
+            return roomDao.getAvailableRooms();
+
         } catch (SQLException ex) {
             System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         return null;
     }
-    
-    
-    public Room getRoomByRoomNo(String roomNo)
-    {
+
+    public Room getRoomByRoomNo(String roomNo) {
         try {
-            return roomdao.getRoomByRoomNo(roomNo);
+            return roomDao.getRoomByRoomNo(roomNo);
         } catch (SQLException ex) {
             System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-    return null;
-    
+        return null;
+
     }
-    
-    public List<Room> getAllRoom()
-    {
+
+    public List<Room> getAllRooms() {
         try {
-          return  roomdao.getAllRoom();
+            return roomDao.getAllRooms();
         } catch (SQLException ex) {
             System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         return null;
     }
-    
-    
+
 }

@@ -1,6 +1,6 @@
 package hotel.management.system.ui;
 
-import hotel.management.system.controller.LoginController;
+import hotel.management.system.controller.UserController;
 import hotel.management.system.model.User;
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +65,7 @@ public class LoginPanel extends JFrame implements ActionListener {
 
         if (e.getSource() == Login) {
             
-            LoginController loginController = new LoginController();
+            UserController userController = new UserController();
            
             
             
@@ -73,18 +73,19 @@ public class LoginPanel extends JFrame implements ActionListener {
                     namef.getText(),
                     passf.getText()                 
             );
-
-            if(loginController.userLogin(user)){
+            
+            if(userController.userLogin(user)){
                 
-                setVisible(false);
+                dispose();
                 add(new DashBoard());
 
             }
             else{
                     
                 JOptionPane.showMessageDialog(
-                        null, "Invalid credentials"
+                        null, "Invalid credentials - Try again"
                 );
+               
             }
 
         }

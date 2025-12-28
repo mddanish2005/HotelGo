@@ -85,26 +85,32 @@ public class DashBoard extends JFrame implements ActionListener  {
         image1.setIcon(new ImageIcon(i2));
 
     }
+    
+    public static void main(String[] args)
+    {
+        new DashBoard();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getSource() == addEmployee)
        {
-           new EmployeePanel();
+           new AddEmployeePanel();
            
        }
        if(e.getActionCommand().equals("Add Room"))
        {
-           new RoomPanel();
+           new AddRoomPanel();
     
        }
        if(e.getSource() == addDriver)
        {
-          new DriverPanel();
+          new AddDriverPanel();
      
        }
        if(e.getSource() == reception)
        {
+           
           new ReceptionPanel();
           
        }

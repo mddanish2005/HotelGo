@@ -10,14 +10,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 /**
  *
  * @author danish
  */
-public class EmployeePanel extends JFrame implements ActionListener {
+public class AddEmployeePanel extends JFrame implements ActionListener {
 
-    JButton submit;
+    JButton submit,back;
 
     JLabel name, age, gender, job, salary, phone;
 
@@ -28,7 +29,7 @@ public class EmployeePanel extends JFrame implements ActionListener {
 
     JComboBox jobs;
 
-    public EmployeePanel() {
+    public AddEmployeePanel() {
         setLayout(null);
         setBounds(500, 250, 900, 650);
         getContentPane().setBackground(Color.white);
@@ -41,6 +42,15 @@ public class EmployeePanel extends JFrame implements ActionListener {
         submit.setFont(new Font("serif", Font.BOLD, 18));
         add(submit);
         submit.addActionListener(this);
+        
+        back = new JButton("Back");
+        back.setBounds(550, 500, 120, 50);
+        back.setBackground(Color.black);
+        back.setForeground(Color.white);
+        back.setFont(new Font("serif", Font.BOLD, 18));
+        add(back);
+        back.addActionListener(this);
+        
 
         //Labels
         name = new JLabel("Name");
@@ -105,32 +115,40 @@ public class EmployeePanel extends JFrame implements ActionListener {
         setVisible(true);
 
     }
-
+ 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(e.getSource() == submit){
 
         EmployeeController employeeController = new EmployeeController();
 
         Employee emp;
         emp = new Employee(
                 namef.getText(),
-                Integer.parseInt(agef.getText()),
-                Double.parseDouble(salaryf.getText()),
+                Integer.valueOf(agef.getText()),
+                BigDecimal.valueOf(Double.parseDouble(salaryf.getText())),
                 phonef.getText(),
                 male.isSelected() ? "Male" : "Female",
                 (String) jobs.getSelectedItem()
         );
 
         if (employeeController.addEmployee(emp)) {
+            dispose();
             JOptionPane.showMessageDialog(
                     null, "Employee Added Successfully"
             );
-            dispose();
+            
         } else {
             JOptionPane.showMessageDialog(
-                    null, "Invalid Details"
+                    null, "Invalid Details - try again"
             );
-           
+        } 
+        }
+        
+        if(e.getSource() == back)
+        {
+            dispose();
         }
     }
 

@@ -17,7 +17,7 @@ import javax.swing.*;
 
 public class ReceptionPanel extends JFrame implements ActionListener {
 
-    String[] str = {"New Customer Form ", "Room", "Department", "All Employee Info",
+    String[] str = {"New Customer Form ", "Show Rooms", "Department", "All Employee Info",
         "Customer Info ", "Manager Info", "Check Out", "Update Status", "Update Room Status",
         "PickUp Service", "Search Room", "Logout"};
 
@@ -62,23 +62,23 @@ public class ReceptionPanel extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == buttons[0]) {
-            new NewCustomerPanel();
-            dispose();
+            new AddNewCustomerPanel();
+
         }
         if (e.getSource() == buttons[1]) {
-            new RoomPanel();
-            dispose();
+            new ShowRoomsPanel();
+
         }
 //} else if (e.getSource() == buttons[2]) {
 //    new DepartmentPanel();
 //
-//} else if (e.getSource() == buttons[3]) {
-//    new AllEmployeeInfoPanel();
-//
+        if (e.getSource() == buttons[3]) {
+            new AllEmployeeInfoPanel();
+        }
 //} else 
         if (e.getSource() == buttons[4]) {
             new CustomerInfoPanel();
-            dispose();
+
         }
 //} else if (e.getSource() == buttons[5]) {
 //    new ManagerInfoPanel();

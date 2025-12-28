@@ -1,4 +1,4 @@
-package hotel.management.system.dao;
+package hotel.management.system.util;
 
 import java.sql.*;
 

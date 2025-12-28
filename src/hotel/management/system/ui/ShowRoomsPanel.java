@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class RoomInfoPanel extends JFrame{
+public class ShowRoomsPanel extends JFrame{
 
     JTable table;
     DefaultTableModel model;
@@ -17,7 +17,7 @@ public class RoomInfoPanel extends JFrame{
 
     RoomController roomController = new RoomController();
 
-    public RoomInfoPanel() {
+    public ShowRoomsPanel() {
 
         setLayout(null);
         setBounds(500, 150, 1000, 800);
@@ -35,7 +35,7 @@ public class RoomInfoPanel extends JFrame{
         backBtn.setForeground(Color.white);
         backBtn.setFont(new Font("serif", Font.BOLD, 16));
         backBtn.addActionListener(e -> {
-            new ReceptionPanel(); // go back
+            // go back
             dispose();
         });
         add(backBtn);
@@ -57,13 +57,13 @@ public class RoomInfoPanel extends JFrame{
     }
 
     private void loadRooms() {
-        List<Room> rooms = roomController.getAllRoom();
+        List<Room> rooms = roomController.getAllRooms();
         model.setRowCount(0);
 
         for (Room r : rooms) {
             model.addRow(new Object[]{
                     r.getRoomNo(),
-                    r.getAvail(),
+                    r.getAvailability(),
                     r.getCleanStatus(),
                     r.getPrice(),
                     r.getBedType()
@@ -72,7 +72,7 @@ public class RoomInfoPanel extends JFrame{
     }
 
     public static void main(String[] args) {
-        new RoomInfoPanel();
+        new ShowRoomsPanel();
     }
 
    

@@ -1,26 +1,20 @@
-
 package hotel.management.system.model;
-
-
 
 public class Driver {
 
+    private int driverId;
     private String name;
-    private int age;
+    private Integer age;        // nullable
     private String carModel;
     private String carCompany;
     private String location;
-    private String gender;
-    private String availability;
+    private String gender;      // Male / Female / Other
+    private String availability; // Available / Unavailable
 
-    // No-arg constructor (useful later)
-    public Driver() {
-    }
-
-    // Parameterized constructor
-    public Driver(String name, int age, String carModel,
-                  String carCompany, String location,
-                  String gender, String availability) {
+    public Driver( String name, Integer age, String carModel,
+                  String carCompany, String location, String gender,
+                  String availability) {
+       
         this.name = name;
         this.age = age;
         this.carModel = carModel;
@@ -30,7 +24,12 @@ public class Driver {
         this.availability = availability;
     }
 
-    // Getters & Setters
+    // ✅ Getters & Setters
+    public int getDriverId() {
+        return driverId;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -39,11 +38,11 @@ public class Driver {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -87,4 +86,3 @@ public class Driver {
         this.availability = availability;
     }
 }
-

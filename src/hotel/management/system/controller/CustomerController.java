@@ -9,10 +9,7 @@ import hotel.management.system.model.Customer;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author danish
- */
+
 public class CustomerController {
     
     CustomerDAO customerDao = new CustomerDAO();

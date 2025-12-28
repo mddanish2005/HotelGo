@@ -4,6 +4,7 @@
  */
 package hotel.management.system.dao;
 
+import hotel.management.system.util.Conn;
 import java.sql.*;
 import hotel.management.system.model.Driver;
 
@@ -13,7 +14,7 @@ public class DriverDAO {
 
         String sql = """
         INSERT INTO driver
-        (name, age, carmodel, carcompany, location, gender, availability)
+        (name, age, car_model, car_company, location, gender, availability)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     """;
 
@@ -26,9 +27,9 @@ public class DriverDAO {
             ps.setString(5, dv.getLocation());
             ps.setString(6, dv.getGender());
             ps.setString(7, dv.getAvailability());
-            
+            boolean res = ps.executeUpdate() > 0;
             con.close();
-            return ps.executeUpdate() > 0;
+            return res;
         }
 
     }

@@ -10,15 +10,22 @@ package hotel.management.system.model;
  */
 public class User {
 
+    int userId;
     String userName;
-    int id;
     String password;
-    
 
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
+    
+    public User(int userId , String userName, String password) {
+        
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+    }
+  
 
     //getter setter for username
     public String getUserName() {
@@ -31,15 +38,11 @@ public class User {
 
     //getter setter for id
     public int getId() {
-        return this.id;
+        return this.userId;
 
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-     public String getPassword() {
+    public String getPassword() {
         return this.password;
 
     }
@@ -47,7 +50,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-   
+
 }
