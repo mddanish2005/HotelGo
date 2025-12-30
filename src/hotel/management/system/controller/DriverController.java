@@ -8,10 +8,10 @@ public class DriverController {
 
     DriverDAO driverDao = new DriverDAO();
 
-    public boolean addDriver(Driver dv) {
+    public boolean addDriver(Driver driver) {
 
         try {
-            return driverDao.addDriver(dv);
+            return driverDao.addDriver(driver);
         } catch (SQLException ex) {
             System.getLogger(EmployeeController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }

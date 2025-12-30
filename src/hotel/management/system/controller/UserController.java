@@ -6,7 +6,7 @@ package hotel.management.system.controller;
 
 import hotel.management.system.dao.UserDAO;
 import hotel.management.system.model.User;
-import hotel.management.system.ui.DashBoard;
+import hotel.management.system.ui.dashboard.DashBoard;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -20,17 +20,14 @@ public class UserController {
 
     public boolean userLogin(User user) {
 
+        User userfromdb = null ;
         try {
-
-            User userfromdb = userDao.getUser(user.getUserName());
-
-            return userfromdb.getPassword().equals(user.getPassword());
-
+            userfromdb = userDao.getUserByUserName(user.getUserName());
         } catch (SQLException ex) {
             System.getLogger(UserController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        return userfromdb.getPassword().equals(user.getPassword());
 
-        return false;
 
     }
 

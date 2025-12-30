@@ -23,6 +23,20 @@ public class Driver {
         this.gender = gender;
         this.availability = availability;
     }
+    
+      public Driver(int driverId, String name, Integer age, String carModel,
+                  String carCompany, String location, String gender,
+                  String availability) {
+          
+        this.driverId = driverId;
+        this.name = name;
+        this.age = age;
+        this.carModel = carModel;
+        this.carCompany = carCompany;
+        this.location = location;
+        this.gender = gender;
+        this.availability = availability;
+    }
 
     // ✅ Getters & Setters
     public int getDriverId() {

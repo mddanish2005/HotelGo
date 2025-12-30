@@ -13,10 +13,11 @@ public class Employee {
     private String gender;        // Male / Female / Other
     private String job;
     private LocalDateTime createdAt;
+    private String departmentName;
 
- 
+   //insertion in db
     public Employee(String name, Integer age, BigDecimal salary,
-                    String phone, String gender, String job) {
+                    String phone, String gender, String job , String departmentName ) {
        
         this.name = name;
         this.age = age;
@@ -24,11 +25,13 @@ public class Employee {
         this.phone = phone;
         this.gender = gender;
         this.job = job;
+        this.departmentName = departmentName;
     }
-
+ 
+    //retrieval from db
     public Employee(int empId, String name, Integer age, BigDecimal salary,
                 String phone, String gender, String job,
-                LocalDateTime createdAt) {
+                LocalDateTime createdAt,String departmentName) {
     this.empId = empId;
     this.name = name;
     this.age = age;
@@ -37,6 +40,7 @@ public class Employee {
     this.gender = gender;
     this.job = job;
     this.createdAt = createdAt;
+    this.departmentName = departmentName;
 }
 
     
@@ -97,6 +101,10 @@ public class Employee {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
+   
+    public String getDepartmentName()
+    {
+        return departmentName;
+    }
   
 }

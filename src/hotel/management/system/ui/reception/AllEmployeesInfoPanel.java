@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package hotel.management.system.ui;
+package hotel.management.system.ui.reception;
 
 import hotel.management.system.controller.EmployeeController;
 import hotel.management.system.controller.RoomController;
@@ -15,11 +15,11 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
-public class AllEmployeeInfoPanel extends JFrame {
+public class AllEmployeesInfoPanel extends JFrame {
 
     JTable table;
     DefaultTableModel model;
@@ -28,7 +28,7 @@ public class AllEmployeeInfoPanel extends JFrame {
 
     EmployeeController employeeController = new EmployeeController();
 
-    public AllEmployeeInfoPanel() {
+    public AllEmployeesInfoPanel() {
 
         setLayout(null);
         setBounds(500, 150, 1000, 800);
@@ -50,18 +50,23 @@ public class AllEmployeeInfoPanel extends JFrame {
 
         // ===== TABLE =====
         String[] columns = {
-                "ID", "Name", "Age", "Salary",
-                "Phone", "Gender", "Job", "Created At"
+            "ID", "Name", "Age", "Salary",
+            "Phone", "Gender", "Job", "Department", "Created at"
         };
 
         model = new DefaultTableModel(columns, 0);
         table = new JTable(model);
-        table.setBounds(50, 120, 900, 500);
-        add(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(50, 120, 780, 450);
+        add(scrollPane);
 
         loadEmployees();
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new AllEmployeesInfoPanel();
     }
 
     private void loadEmployees() {
@@ -70,14 +75,15 @@ public class AllEmployeeInfoPanel extends JFrame {
 
         for (Employee e : emps) {
             model.addRow(new Object[]{
-                    e.getEmpId(),
-                    e.getName(),
-                    e.getAge(),
-                    e.getSalary(),
-                    e.getPhone(),
-                    e.getGender(),
-                    e.getJob(),
-                    e.getCreatedAt()
+                e.getEmpId(),
+                e.getName(),
+                e.getAge(),
+                e.getSalary(),
+                e.getPhone(),
+                e.getGender(),
+                e.getJob(),
+                e.getDepartmentName(),
+                e.getCreatedAt()
             });
         }
     }

@@ -9,21 +9,22 @@ import java.util.List;
 
 public class RoomDAO {
 
-    public boolean addRoom(Room rm) throws SQLException {
+    public boolean addRoom(Room room) throws SQLException {
         String sql = """
-        INSERT INTO room
-        (room_no,availability,cleanstatus,price,bedtype)
-        VALUES (?, ?, ?, ?, ?)
-    """;
+                    INSERT INTO room
+                    (room_no,availability,cleanstatus,price,bedtype)
+                    VALUES (?, ?, ?, ?, ?)
+                """;
 
         Connection con = Conn.getMySqlConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setString(1, rm.getRoomNo());
-        ps.setString(2, rm.getAvailability());
-        ps.setString(3, rm.getCleanStatus());
-        ps.setBigDecimal(4, rm.getPrice());
-        ps.setString(5, rm.getBedType());
+        ps.setString(1, room.getRoomNo());
+        ps.setString(2, room.getAvailability());
+        ps.setString(3, room.getCleanStatus());
+        ps.setBigDecimal(4, room.getPrice());
+        ps.setString(5, room.getBedType());
+
 
         return ps.executeUpdate() > 0;
 
@@ -31,10 +32,10 @@ public class RoomDAO {
 
     public List<Room> getAvailableRooms() throws SQLException {
         String sql = """
-                     Select * from room where
-                     availability = 'Available'
-                     AND cleanstatus = 'Cleaned'
-                     """;
+                Select * from room where
+                availability = 'Available'
+                AND cleanstatus = 'Cleaned'
+                """;
 
         Connection con = Conn.getMySqlConnection();
         PreparedStatement ps = con.prepareStatement(sql);
@@ -60,9 +61,9 @@ public class RoomDAO {
     public Room getRoomByRoomNo(String roomNo) throws SQLException {
 
         String sql = """
-                     Select * from room where
-                     room_no = ?
-                     """;
+                Select * from room where
+                room_no = ?
+                """;
 
         Connection con = Conn.getMySqlConnection();
         PreparedStatement ps = con.prepareStatement(sql);
@@ -87,8 +88,8 @@ public class RoomDAO {
 
     public List<Room> getAllRooms() throws SQLException {
         String sql = """                   
-                     select * from room
-                     """;
+                select * from room
+                """;
 
         Connection con = Conn.getMySqlConnection();
         PreparedStatement ps = con.prepareStatement(sql);
@@ -108,6 +109,46 @@ public class RoomDAO {
         }
 
         return rooms;
+
+    }
+
+    public boolean deleteRoom(Room rm) throws SQLException {
+        String sql = """
+                    delete from room
+                                  where room_no = ?
+                """;
+
+        Connection con = Conn.getMySqlConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, rm.getRoomNo());
+
+        return ps.executeUpdate() > 0;
+    }
+
+    public boolean updateRoom(Room rm) throws SQLException {
+       String sql = """
+    UPDATE room
+    SET
+        availability = ?,
+        cleanstatus = ?,
+        price = ?,
+        bedtype = ?
+    WHERE room_no = ?
+""";
+
+
+        Connection con = Conn.getMySqlConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, rm.getAvailability());
+        ps.setString(2, rm.getCleanStatus());
+        ps.setBigDecimal(3, rm.getPrice());
+        ps.setString(4, rm.getBedType());
+        ps.setString(5, rm.getRoomNo());
+        
+
+        return ps.executeUpdate() > 0;
 
     }
 

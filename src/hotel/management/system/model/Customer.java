@@ -14,12 +14,13 @@ public class Customer {
     private String roomNo;
     private LocalDateTime checkInTime;
     private BigDecimal deposit;
+    private BigDecimal totalBill;
 
    
     // constructor
     public Customer(String idType, String idNumber, String name,
                     String gender, String country, String roomNo,
-                     BigDecimal deposit) {
+                     BigDecimal deposit,BigDecimal totalBill) {
         
         this.idType = idType;
         this.idNumber = idNumber;
@@ -28,11 +29,12 @@ public class Customer {
         this.country = country;
         this.roomNo = roomNo;
         this.deposit = deposit;
+        this.totalBill = totalBill;
     }
     
         public Customer(int customerId ,String idType, String idNumber, String name,
                     String gender, String country, String roomNo, LocalDateTime checkInTime,
-                     BigDecimal deposit) {
+                     BigDecimal deposit,BigDecimal totalBill) {
             
         this.customerId = customerId;
         this.idType = idType;
@@ -43,6 +45,7 @@ public class Customer {
         this.roomNo = roomNo;
         this.checkInTime = checkInTime;
         this.deposit = deposit;
+        this.totalBill = totalBill;
     }
     
     
@@ -112,6 +115,10 @@ public void setDeposit(BigDecimal deposit) {
     this.deposit = deposit;
 }
 
-
+public BigDecimal getTotalBill()
+{
+    return this.totalBill;
+}
    
 }
+//

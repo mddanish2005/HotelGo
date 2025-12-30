@@ -5,33 +5,86 @@
 package hotel.management.system.controller;
 
 import hotel.management.system.dao.CustomerDAO;
+import hotel.management.system.dao.RoomDAO;
 import hotel.management.system.model.Customer;
+import hotel.management.system.model.Room;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public class CustomerController {
-    
+
     CustomerDAO customerDao = new CustomerDAO();
-    
-    public boolean addCustomer(Customer customer)
-    {
+    RoomController roomController = new RoomController();
+
+    public boolean addCustomer(Customer customer) {
         try {
-            return customerDao.addCustomer(customer);
+
+            if (customer != null) {
+                return  customerDao.addCustomer(customer);
+            }
         } catch (SQLException ex) {
             System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-    return false;
+        return false;
+
     }
-    
-    public List<Customer> getCustomerByName(String name)
-    {
-        
+
+    public List<Customer> getCustomerByName(String name) {
+
         try {
-           return customerDao.getCustomerByName(name);
+            return customerDao.getCustomerByName(name);
         } catch (SQLException ex) {
             System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-    return null;
+        return null;
     }
+
+    public List<Customer> getAllCustomers() {
+        try {
+            return customerDao.getAllCustomers();
+        } catch (SQLException ex) {
+            System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return null;
+    }
+
+    public boolean updateCustomer(Customer customer) {
+        try {
+
+            Customer existing = customerDao.getCustomerByCustomerId(customer.getCustomerId());
+            if (existing.getRoomNo().equals(customer.getRoomNo())) {
+                roomController.occupyRoom(customer.getRoomNo());
+                return customerDao.updateCustomer(customer);
+            } else {
+                roomController.releaseRoom(existing.getRoomNo());
+                customerDao.updateCustomer(customer);
+            }
+
+            return customerDao.updateCustomer(customer);
+        } catch (SQLException ex) {
+            System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
+        return false;
+    }
+
+    public Customer getCustomerByGovernmentId(String id) {
+        try {
+            return customerDao.getCustomerByGovernmentId(id);
+        } catch (SQLException ex) {
+            System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return null;
+    }
+    
+    public Customer getCustomerByCustomerId(int id)
+    {
+        try {
+            return customerDao.getCustomerByCustomerId(id);
+        } catch (SQLException ex) {
+            System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return null;
+    }
+
 }

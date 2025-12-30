@@ -1,4 +1,4 @@
-package hotel.management.system.ui;
+package hotel.management.system.ui.reception;
 
 import hotel.management.system.controller.RoomController;
 import hotel.management.system.model.Room;
@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class ShowRoomsPanel extends JFrame{
+public class AllRoomsInfoPanel extends JFrame{
 
     JTable table;
     DefaultTableModel model;
@@ -17,7 +17,7 @@ public class ShowRoomsPanel extends JFrame{
 
     RoomController roomController = new RoomController();
 
-    public ShowRoomsPanel() {
+    public AllRoomsInfoPanel() {
 
         setLayout(null);
         setBounds(500, 150, 1000, 800);
@@ -48,8 +48,10 @@ public class ShowRoomsPanel extends JFrame{
 
         model = new DefaultTableModel(columns, 0);
         table = new JTable(model);
-        table.setBounds(50, 120, 900, 500);
-        add(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+scrollPane.setBounds(50, 120, 780, 450);
+add(scrollPane);
+
 
         loadRooms();
 
@@ -72,7 +74,7 @@ public class ShowRoomsPanel extends JFrame{
     }
 
     public static void main(String[] args) {
-        new ShowRoomsPanel();
+        new AllRoomsInfoPanel();
     }
 
    
