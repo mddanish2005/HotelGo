@@ -14,44 +14,46 @@ public class AllDepartmentsInfoPanel extends JFrame {
     DefaultTableModel model;
     JButton backBtn;
 
-    DepartmentDAO departmentDao= new DepartmentDAO();
+    DepartmentDAO departmentDao = new DepartmentDAO();
 
     public AllDepartmentsInfoPanel() {
 
         setLayout(null);
-        setBounds(500, 150, 900, 700);
+        setBounds(420, 140, 1000, 760);
         getContentPane().setBackground(Color.white);
 
         JLabel heading = new JLabel("Department Overview");
-        heading.setBounds(280, 30, 400, 40);
-        heading.setFont(new Font("serif", Font.BOLD, 28));
+        heading.setBounds(350, 30, 500, 45);
+        heading.setFont(new Font("Serif", Font.BOLD, 32));
         add(heading);
 
-        // Back button
         backBtn = new JButton("Back");
-        backBtn.setBounds(40, 30, 120, 35);
+        backBtn.setBounds(50, 35, 120, 38);
         backBtn.setBackground(Color.black);
         backBtn.setForeground(Color.white);
+        backBtn.setFont(new Font("Serif", Font.BOLD, 16));
         backBtn.addActionListener(e -> dispose());
         add(backBtn);
 
-        // Table
         String[] columns = {
                 "Department Name",
                 "Budget",
-                "No. of Employees"
+                "Employees"
         };
 
         model = new DefaultTableModel(columns, 0);
         table = new JTable(model);
 
-JScrollPane scrollPane = new JScrollPane(table);
-scrollPane.setBounds(50, 120, 780, 450);
-add(scrollPane);
+        table.setRowHeight(30);
+        table.setFont(new Font("Serif", Font.PLAIN, 16));
+        table.getTableHeader().setFont(new Font("Serif", Font.BOLD, 17));
+        table.getTableHeader().setReorderingAllowed(false);
 
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(50, 120, 900, 560);
+        add(scrollPane);
 
         loadDepartments();
-
         setVisible(true);
     }
 

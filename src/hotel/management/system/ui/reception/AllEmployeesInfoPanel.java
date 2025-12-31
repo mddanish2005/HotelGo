@@ -1,23 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package hotel.management.system.ui.reception;
 
 import hotel.management.system.controller.EmployeeController;
-import hotel.management.system.controller.RoomController;
 import hotel.management.system.model.Employee;
-import hotel.management.system.model.Room;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.List;
 
 public class AllEmployeesInfoPanel extends JFrame {
 
@@ -31,42 +20,41 @@ public class AllEmployeesInfoPanel extends JFrame {
     public AllEmployeesInfoPanel() {
 
         setLayout(null);
-        setBounds(500, 150, 1000, 800);
+        setBounds(420, 130, 1100, 820);
         getContentPane().setBackground(Color.white);
 
-        JLabel heading = new JLabel("All Employee Information");
-        heading.setBounds(320, 40, 600, 40);
-        heading.setFont(new Font("serif", Font.BOLD, 28));
+        JLabel heading = new JLabel("Employee Directory");
+        heading.setBounds(420, 35, 500, 45);
+        heading.setFont(new Font("Serif", Font.BOLD, 32));
         add(heading);
 
-        // ===== BACK BUTTON =====
         backBtn = new JButton("Back");
-        backBtn.setBounds(50, 40, 120, 35);
+        backBtn.setBounds(50, 40, 120, 38);
         backBtn.setBackground(Color.black);
         backBtn.setForeground(Color.white);
-        backBtn.setFont(new Font("serif", Font.BOLD, 16));
+        backBtn.setFont(new Font("Serif", Font.BOLD, 16));
         backBtn.addActionListener(e -> dispose());
         add(backBtn);
 
-        // ===== TABLE =====
         String[] columns = {
-            "ID", "Name", "Age", "Salary",
-            "Phone", "Gender", "Job", "Department", "Created at"
+                "ID", "Name", "Age", "Salary",
+                "Phone", "Gender", "Job", "Department", "Created At"
         };
 
         model = new DefaultTableModel(columns, 0);
         table = new JTable(model);
+
+        table.setRowHeight(28);
+        table.setFont(new Font("Serif", Font.PLAIN, 15));
+        table.getTableHeader().setFont(new Font("Serif", Font.BOLD, 16));
+        table.getTableHeader().setReorderingAllowed(false);
+
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(50, 120, 780, 450);
+        scrollPane.setBounds(50, 120, 980, 600);
         add(scrollPane);
 
         loadEmployees();
-
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new AllEmployeesInfoPanel();
     }
 
     private void loadEmployees() {
@@ -75,16 +63,20 @@ public class AllEmployeesInfoPanel extends JFrame {
 
         for (Employee e : emps) {
             model.addRow(new Object[]{
-                e.getEmpId(),
-                e.getName(),
-                e.getAge(),
-                e.getSalary(),
-                e.getPhone(),
-                e.getGender(),
-                e.getJob(),
-                e.getDepartmentName(),
-                e.getCreatedAt()
+                    e.getEmpId(),
+                    e.getName(),
+                    e.getAge(),
+                    e.getSalary(),
+                    e.getPhone(),
+                    e.getGender(),
+                    e.getJob(),
+                    e.getDepartmentName(),
+                    e.getCreatedAt()
             });
         }
+    }
+
+    public static void main(String[] args) {
+        new AllEmployeesInfoPanel();
     }
 }

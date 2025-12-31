@@ -160,6 +160,26 @@ public class CustomerDAO {
         return null;
     }
     
+     public boolean checkOutCustomer(Customer customer) throws SQLException{
+         String sql1 = """
+                       Delete from customer 
+                       where customer_internal_id = ?""";
+         String sql2 = """
+                       update room
+                       set availability = 'Available'
+                       where room_no = ?""";
+         Connection con = Conn.getMySqlConnection();
+         PreparedStatement ps1 = con.prepareStatement(sql1);
+         ps1.setInt(1, customer.getCustomerId());
+         PreparedStatement ps2 = con.prepareStatement(sql2);
+         ps2.setString(1, customer.getRoomNo());
+         con.setAutoCommit(false);
+         ps1.executeUpdate();
+         ps2.executeUpdate();
+         con.commit();
+         return true;
+         
+     }
     
     
 }

@@ -97,11 +97,18 @@ String[] str = {
         if (e.getSource() == buttons[2]) {
             new UpdateCustomerStatusPanel();
         }
+        
+        if(e.getSource() == buttons[3]){
+            new CheckOutPanel();
+        }
 
         if (e.getSource() == buttons[4]) {
             new AllRoomsInfoPanel();
         }
 
+        if(e.getSource() == buttons[5]){
+            new RoomManagementPanel();
+        }
         if (e.getSource() == buttons[6]) {
             new AllEmployeesInfoPanel();
         }

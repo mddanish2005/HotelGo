@@ -87,4 +87,14 @@ public class CustomerController {
         return null;
     }
 
+    public boolean checkOutCustomer(Customer customer){
+        
+        try {
+          return  customerDao.checkOutCustomer(customer);
+        } catch (SQLException ex) {
+            System.getLogger(CustomerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return false;
+        
+    }
 }

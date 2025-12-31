@@ -55,13 +55,14 @@ public class RoomController {
         return null;
     }
 
-    public void updateRoom(Room room){
+    public boolean updateRoom(Room room){
         
         try {
-            roomDao.updateRoom(room);
+          return  roomDao.updateRoom(room);
         } catch (SQLException ex) {
             System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        return false;
 
     }
     
@@ -84,6 +85,24 @@ public class RoomController {
         List<Room> rooms = new ArrayList();
         try {
             rooms = roomDao.getAvailableRooms();
+        } catch (SQLException ex) {
+            System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        String[] roomNos = new String[rooms.size()];
+        
+        int i = 0;
+        for(Room room : rooms){
+            roomNos[i] = room.getRoomNo();
+            i++;
+        }
+        return roomNos;
+    }
+    
+      public String[] getAllRoomNos()
+    {
+        List<Room> rooms = new ArrayList();
+        try {
+            rooms = roomDao.getAllRooms();
         } catch (SQLException ex) {
             System.getLogger(RoomController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
