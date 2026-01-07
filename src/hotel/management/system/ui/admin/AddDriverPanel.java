@@ -151,7 +151,7 @@ public class AddDriverPanel extends JFrame implements ActionListener {
                     Integer.valueOf(ageField.getText()),
                     carModelField.getText(),
                     carCompanyField.getText(),
-                    locationLabel.getText(),
+                    locationField.getText(),
                     maleRadio.isSelected() ? "Male" : "Female",
                     (String) availabilityComboBox.getSelectedItem()
             );

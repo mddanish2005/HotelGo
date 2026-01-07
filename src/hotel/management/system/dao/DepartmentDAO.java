@@ -69,4 +69,26 @@ public class DepartmentDAO {
 
         return departments;
     }
+
+    public String[] getAllDepartmentNames() {
+
+        List<String> departments = new ArrayList<>();
+
+        String sql = "SELECT department_name FROM department";
+
+        try (Connection con = Conn.getMySqlConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                departments.add(rs.getString("department_name"));
+            }
+
+            return departments.toArray(String[]::new);
+
+        } catch (SQLException ex) {
+            System.getLogger(DepartmentDAO.class.getName()).log(System.Logger.Level.ERROR,(String) null, ex);
+        }
+
+        return new String[0];
+    }
+
 }

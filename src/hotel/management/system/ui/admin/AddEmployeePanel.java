@@ -2,6 +2,7 @@ package hotel.management.system.ui.admin;
 
 import hotel.management.system.controller.DepartmentController;
 import hotel.management.system.controller.EmployeeController;
+import hotel.management.system.dao.DepartmentDAO;
 import hotel.management.system.model.Employee;
 
 import javax.swing.*;
@@ -22,9 +23,8 @@ public class AddEmployeePanel extends JFrame implements ActionListener {
     ButtonGroup genderGroup;
 
     JComboBox departmentComboBox;
-    
-    DepartmentController departmentController = new DepartmentController();
 
+    DepartmentDAO departmentDao = new DepartmentDAO();
     public AddEmployeePanel() {
 
         setLayout(null);
@@ -95,7 +95,7 @@ public class AddEmployeePanel extends JFrame implements ActionListener {
         add(maleRadio);
         add(femaleRadio);
 
-        String[] departments = departmentController.getAllDepartmentNames();
+        String[] departments = departmentDao.getAllDepartmentNames();
         departmentComboBox = new JComboBox(departments);
         departmentComboBox.setBounds(270, 420, 180, 34);
         departmentComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 16));
